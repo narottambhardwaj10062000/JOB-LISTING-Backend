@@ -1,9 +1,20 @@
 //IMPORTS
 const express = require("express");
 require("dotenv").config();
+const mongoose = require("mongoose");
+const authRoutes = require("./routes/auth");
 
 //CREATING AN EXPRESS SERVER
 const app = express();
+
+app.use(express.json());
+
+//Connecting To The Database
+mongoose
+    .connect(process.env.MONGODB_URI)
+    .then(() => {console.log("database Connected")})
+    .catch((error) => {console.log(error)})
+
 
 //INITIALIZING PORT
 const PORT = process.env.PORT || 5000; 
@@ -16,6 +27,9 @@ app.get("/health", (req, res) => {
         time: new Date(),
     });
 })
+
+//MiddleWares
+app.use("/api/v1/auth", authRoutes);
 
 //Making My server listen to the PORT
 app.listen(PORT, () => {
