@@ -35,5 +35,5 @@ app.use("/api/v1/job", jobRoutes);
 
 //Making My server listen to the PORT
 app.listen(PORT, () => {
-    console.log(`server is running on ${PORT} `);
+    console.log(`server is running on ${PORT}`);
 })

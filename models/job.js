@@ -18,8 +18,12 @@ const jobSchema = new mongoose.Schema({
     logoUrl: {
         type: String,
         required: true,
-    }
+    },
+    refUserId: {
+        type: mongoose.Types.ObjectId,
+        required: true,
+    },
 })
 
-//Exports
+//Exporting the model
 module.exports = mongoose.model("Job", jobSchema);
